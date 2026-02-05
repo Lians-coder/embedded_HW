@@ -1,0 +1,216 @@
+---- Opened the serial port COM4 ----
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+
+RIGHT button pressed! Count: 13
+Hello!
+
+RIGHT button pressed! Count: 14
+Hello!
+Hello!
+Hello!
+
+RIGHT button pressed! Count: 15
+Hello!
+Hello!
+Hello!
+
+RIGHT button pressed! Count: 16
+Hello!
+Hello!
+
+RIGHT button pressed! Count: 17
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+
+LEFT button pressed! Count: 1
+Hello!
+
+LEFT button pressed! Count: 3
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+
+LEFT button pressed! Count: 4
+Hello!
+
+LEFT button pressed! Count: 6
+Hello!
+Hello!
+Hello!
+
+LEFT button pressed! Count: 8
+Hello!
+Hello!
+Hello!
+Hello!
+
+LEFT button pressed! Count: 9
+Hello!
+Hello!
+Hello!
+
+RIGHT button pressed! Count: 18
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+
+RIGHT button pressed! Count: 19
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+
+LEFT button pressed! Count: 11
+
+RIGHT button pressed! Count: 20
+Hello!
+Hello!
+Hello!
+
+RIGHT button pressed! Count: 21
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+
+RIGHT button pressed! Count: 22
+Hello!
+Hello!
+
+LEFT button pressed! Count: 19
+
+RIGHT button pressed! Count: 24
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+
+LEFT button pressed! Count: 20
+Hello!
+
+RIGHT button pressed! Count: 25
+Hello!
+Hello!
+Hello!
+
+RIGHT button pressed! Count: 27
+Hello!
+Hello!
+Hello!
+
+LEFT button pressed! Count: 21
+Hello!
+Hello!
+
+LEFT button pressed! Count: 23
+
+RIGHT button pressed! Count: 28
+Hello!
+Hello!
+Hello!
+Hello!
+
+LEFT button pressed! Count: 24
+Hello!
+
+LEFT button pressed! Count: 25
+
+RIGHT button pressed! Count: 29
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+
+LEFT button pressed! Count: 26
+Hello!
+Hello!
+
+RIGHT button pressed! Count: 31
+Hello!
+
+RIGHT button pressed! Count: 32
+Hello!
+
+LEFT button pressed! Count: 27
+Hello!
+
+RIGHT button pressed! Count: 33
+Hello!
+Hello!
+Hello!
+
+RIGHT button pressed! Count: 34
+Hello!
+
+RIGHT button pressed! Count: 36
+Hello!
+
+RIGHT button pressed! Count: 37
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+
+LEFT button pressed! Count: 28
+
+RIGHT button pressed! Count: 38
+Hello!
+
+LEFT button pressed! Count: 31
+Hello!
+
+LEFT button pressed! Count: 32
+Hello!
+
+LEFT button pressed! Count: 34
+Hello!
+
+LEFT button pressed! Count: 53
+
+RIGHT button pressed! Count: 43
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+
+RIGHT button pressed! Count: 45
+Hello!
+
+RIGHT button pressed! Count: 48
+Hello!
+
+RIGHT button pressed! Count: 49
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+---- Closed the serial port COM4 ----

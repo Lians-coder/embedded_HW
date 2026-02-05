@@ -1,0 +1,163 @@
+---- Opened the serial port COM4 ----
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+
+RIGHT button pressed! Count: 1
+Hello!
+Hello!
+Hello!
+Hello!
+
+RIGHT button pressed! Count: 2
+Hello!
+
+LEFT button pressed! Count: 1
+Hello!
+Hello!
+
+RIGHT button pressed! Count: 3
+Hello!
+
+RIGHT button pressed! Count: 4
+Hello!
+
+LEFT button pressed! Count: 2
+Hello!
+
+LEFT button pressed! Count: 3
+
+RIGHT button pressed! Count: 5
+Hello!
+Hello!
+
+RIGHT button pressed! Count: 6
+Hello!
+Hello!
+
+RIGHT button pressed! Count: 7
+Hello!
+
+RIGHT button pressed! Count: 8
+Hello!
+
+RIGHT button pressed! Count: 9
+Hello!
+Hello!
+Hello!
+Hello!
+
+LEFT button pressed! Count: 4
+Hello!
+
+LEFT button pressed! Count: 5
+
+RIGHT button pressed! Count: 10
+Hello!
+
+LEFT button pressed! Count: 6
+
+RIGHT button pressed! Count: 11
+Hello!
+
+LEFT button pressed! Count: 7
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+
+LEFT button pressed! Count: 8
+Hello!
+Hello!
+Hello!
+Hello!
+
+LEFT button pressed! Count: 9
+Hello!
+Hello!
+Hello!
+
+LEFT button pressed! Count: 10
+Hello!
+
+LEFT button pressed! Count: 11
+Hello!
+
+LEFT button pressed! Count: 12
+Hello!
+Hello!
+Hello!
+Hello!
+
+RIGHT button pressed! Count: 12
+Hello!
+
+RIGHT button pressed! Count: 13
+Hello!
+Hello!
+
+RIGHT button pressed! Count: 14
+Hello!
+Hello!
+Hello!
+
+LEFT button pressed! Count: 13
+Hello!
+Hello!
+
+RIGHT button pressed! Count: 15
+Hello!
+Hello!
+
+LEFT button pressed! Count: 14
+Hello!
+
+RIGHT button pressed! Count: 16
+Hello!
+Hello!
+
+LEFT button pressed! Count: 15
+Hello!
+
+LEFT button pressed! Count: 16
+Hello!
+
+LEFT button pressed! Count: 17
+
+RIGHT button pressed! Count: 17
+Hello!
+Hello!
+Hello!
+Hello!
+
+RIGHT button pressed! Count: 18
+Hello!
+
+RIGHT button pressed! Count: 19
+Hello!
+
+RIGHT button pressed! Count: 20
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+---- Closed the serial port COM4 ----
