@@ -5,8 +5,6 @@ constexpr size_t btnCount   = 2;
 constexpr uint8_t PIN_LEFT  = 4;
 constexpr uint8_t PIN_RIGHT = 5;
 
-uint32_t now = 0;
-
 struct Btn {
   uint8_t pin;
   const char* name;
@@ -23,9 +21,18 @@ Btn btns[btnCount] = {
   {PIN_RIGHT, "RIGHT"}
 };
 
+void IRAM_ATTR handleBtn(Btn &btn)
+{
+  uint32_t now = millis();
+  if (now - btn.lastPressed > debounceT)
+  {
+    btn.pressed = true;
+    btn.lastPressed = now;
+  }
+}
 
-void IRAM_ATTR reactionLeft() { btns[0].pressed = true; }
-void IRAM_ATTR reactionRight() { btns[1].pressed = true; }
+void IRAM_ATTR reactionLeft() { handleBtn(btns[0]); }
+void IRAM_ATTR reactionRight() { handleBtn(btns[1]); }
 
 void setup()
 {
@@ -42,18 +49,13 @@ void setup()
 
 void loop()
 {
-  now = millis();
   for (int i = 0; i < btnCount; i++)
   {
     if (btns[i].pressed)
     {
       btns[i].pressed = false;
-      if (now - btns[i].lastPressed > debounceT)
-      {
-        btns[i].counter++;
-        btns[i].lastPressed = now;
-        Serial.printf("\n%s button pressed! Count: %lu\n", btns[i].name, btns[i].counter);        
-      }      
+      btns[i].counter++;
+      Serial.printf("\n%s button pressed! Count: %lu\n", btns[i].name, btns[i].counter);              
     }
   }
 
