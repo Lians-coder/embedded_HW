@@ -1,6 +1,6 @@
 #include <Arduino.h>
 
-constexpr uint8_t debounceT = 10;
+constexpr uint8_t debounceT = 50;
 constexpr size_t btnCount   = 2;
 constexpr uint8_t PIN_LEFT  = 4;
 constexpr uint8_t PIN_RIGHT = 5;
