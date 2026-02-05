@@ -10,8 +10,8 @@ uint32_t now = 0;
 struct Btn {
   uint8_t pin;
   const char* name;
-  volatile uint32_t counter;
-  volatile uint32_t lastPressed;
+  uint32_t counter;
+  uint32_t lastPressed;
   volatile bool pressed;
 
   Btn (uint8_t p, const char* n)
