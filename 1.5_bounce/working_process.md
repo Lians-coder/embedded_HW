@@ -24,4 +24,4 @@ This confirms that the debounce implementation effectively filtered out transiti
 
 ### Disclaimer
 
-Spurious spikes were observed on the second input when only one button was pressed. This behavior persisted after relocating the wiring on the breadboard.  
+Spurious spikes were sometimes observed on the second input when only one button was pressed. When the logic analyzer was disconnected, these effects disappeared in the serial output. This indicates that the measurement setup influenced the circuit behavior, likely due to additional loading or coupling on the breadboard wiring, rather than an issue in the software or GPIO configuration.  
