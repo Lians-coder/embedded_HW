@@ -33,8 +33,8 @@ void setup()
     pinMode(btns[i].pin, INPUT);
   }
 
-  attachInterrupt(digitalPinToInterrupt(btns[0].pin), reactionLeft, FALLING);
-  attachInterrupt(digitalPinToInterrupt(btns[1].pin), reactionRight, FALLING);
+  attachInterrupt(digitalPinToInterrupt(btns[0].pin), reactionLeft, RISING);
+  attachInterrupt(digitalPinToInterrupt(btns[1].pin), reactionRight, RISING);
 }
 
 void loop()

@@ -5,7 +5,7 @@
 The circuit schematic was designed in KiCad and is available here:  
 [KiCad schematic](https://github.com/Lians-coder/embedded_HW/blob/main/1.5_bounce/bounce.kicad_sch).  
 
-Two toggle switch modules were used, each with a 10 kΩ pull-down resistor. In this configuration, pressing a button drives the signal to a HIGH logic level. A logic analyzer was connected to the output line of each toggle switch, while the same signals were simultaneously monitored by the ESP32-S3 via serial output.  
+Two toggle switch modules were used, each with a 10 kΩ pull-down resistor. In this configuration, pressing a button drives the signal to a HIGH logic level, so `RISING` interrupt were choosing. A logic analyzer was connected to the output line of each toggle switch, while the same signals were simultaneously monitored by the ESP32-S3 via serial output.  
 
 ## Counting bounce impulses
 

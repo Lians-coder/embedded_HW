@@ -29,8 +29,8 @@ void setup()
   
   Serial.begin(115200);
 
-  attachInterrupt(digitalPinToInterrupt(BUTTON_LEFT), reactionLeft, FALLING);
-  attachInterrupt(digitalPinToInterrupt(BUTTON_RIGHT), reactionRight, FALLING);
+  attachInterrupt(digitalPinToInterrupt(BUTTON_LEFT), reactionLeft, RISING);
+  attachInterrupt(digitalPinToInterrupt(BUTTON_RIGHT), reactionRight, RISING);
 }
 
 void loop()
