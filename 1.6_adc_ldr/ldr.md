@@ -8,7 +8,7 @@ KiCad [schematic](https://github.com/Lians-coder/embedded_HW/blob/main/1.6_adc_l
 
 ### Regular task outputs
 
-[Code for this part](https://github.com/Lians-coder/embedded_HW/blob/main/1.6_adc_ldr/ldr.cpp)
+[Code for this part](https://github.com/Lians-coder/embedded_HW/blob/main/1.6_adc_ldr/ldr.cpp).  
 
 | Level | Output |
 | -- | -- |
@@ -17,14 +17,14 @@ KiCad [schematic](https://github.com/Lians-coder/embedded_HW/blob/main/1.6_adc_l
 | Medium light | Voltage (raw): 2382<br>Voltage (mV): 2012<br>Voltage (calc.): 2561<br>Error: 27.29 % |
 | Bright light | Voltage (raw): 3189<br>Voltage (mV): 2647<br>Voltage (calc.): 3429<br>Error: 29.54 % |
 | Full light | Voltage (raw): 3916<br>Voltage (mV): 3086<br>Voltage (calc.): 4210<br>Error: 36.42 % |
-
-### Optional tasks uotputs
+  
+### Optional tasks outputs
 
 Code for [this part](https://github.com/Lians-coder/embedded_HW/blob/main/1.6_adc_ldr/ldr_adc.cpp).  
 
-For each experiment, the `adcAttenuation`, `adcResolution`, `maxADC` and `vRef` parameters were changed respectively.  
+> For each experiment, the `adcAttenuation`, `adcResolution`, `maxADC` and `vRef` parameters were changed respectively.  
 
-`maxADC` values, corresponding to the ADC resolution chosed:  
+- `maxADC` values, corresponding to the ADC resolution chosed:  
 
 | Bits | Max range |
 | -- | -- |
@@ -33,7 +33,7 @@ For each experiment, the `adcAttenuation`, `adcResolution`, `maxADC` and `vRef` 
 | 11 | 2047 |
 | 12 | 4095 |
 
-`vRef` value depends on ADC attenuation as follows:
+- `vRef` value depends on ADC attenuation as follows:
 
 | Attenuation (dB) | Max input (V) |
 | -- | -- |
@@ -41,7 +41,7 @@ For each experiment, the `adcAttenuation`, `adcResolution`, `maxADC` and `vRef` 
 | 2.5 | 1.1 |
 | 6 | 1.5 |
 | 11 | 3.3 |
-
+  
 #### ADC 0db attenuation and 9 bits resolution
 
 | Level | Output |
@@ -51,7 +51,7 @@ For each experiment, the `adcAttenuation`, `adcResolution`, `maxADC` and `vRef` 
 | Medium light | Voltage (raw): 511<br>Voltage (mV): 985<br>Voltage (calc.): 800<br>Error: 18.78 % |
 | Bright light | Voltage (raw): 511<br>Voltage (mV): 985<br>Voltage (calc.): 800<br>Error: 18.78 % |
 | Full light | Voltage (raw): 511<br>Voltage (mV): 985<br>Voltage (calc.): 800<br>Error: 18.78 % |
-
+  
 #### ADC_2_5db attenuation and 10 bits resolution
 
 | Level | Output |
@@ -61,7 +61,7 @@ For each experiment, the `adcAttenuation`, `adcResolution`, `maxADC` and `vRef` 
 | Medium light | Voltage (raw): 1023<br>Voltage (mV): 1305<br>Voltage (calc.): 1100<br>Error: 15.71 % |
 | Bright light | Voltage (raw): 1023<br>Voltage (mV): 1305<br>Voltage (calc.): 1100<br>Error: 15.71 % |
 | Full light | Voltage (raw): 1023<br>Voltage (mV): 1305<br>Voltage (calc.): 1100<br>Error: 15.71 % |
-
+  
 #### ADC_6db attenuation and 11 bits resolution
 
 | Level | Output |
@@ -71,7 +71,7 @@ For each experiment, the `adcAttenuation`, `adcResolution`, `maxADC` and `vRef` 
 | Medium light | Voltage (raw): 2047<br>Voltage (mV): 1833<br>Voltage (calc.): 1500<br>Error: 18.17 % |
 | Bright light | Voltage (raw): 2047<br>Voltage (mV): 1833<br>Voltage (calc.): 1500<br>Error: 18.17 % |
 | Full light | Voltage (raw): 2047<br>Voltage (mV): 1833<br>Voltage (calc.): 1500<br>Error: 18.17 % |
-
+  
 #### ADC_11db attenuation and 9 bits resolution
 
 | Level | Output |
@@ -81,7 +81,7 @@ For each experiment, the `adcAttenuation`, `adcResolution`, `maxADC` and `vRef` 
 | Medium light | Voltage (raw): 213<br>Voltage (mV): 1449<br>Voltage (calc.): 1375<br>Error: 5.11 % |
 | Bright light | Voltage (raw): 343<br>Voltage (mV): 2316<br>Voltage (calc.): 2215<br>Error: 4.36 % |
 | Full light | Voltage (raw): 511<br>Voltage (mV): 3157<br>Voltage (calc.): 3300<br>Error: 4.53 % |
-
+  
 #### ADC_11db attenuation and 10 bits resolution
 
 | Level | Output |
@@ -91,7 +91,7 @@ For each experiment, the `adcAttenuation`, `adcResolution`, `maxADC` and `vRef` 
 | Medium light | Voltage (raw): 490<br>Voltage (mV): 1662<br>Voltage (calc.): 1580<br>Error: 4.93 % |
 | Bright light | Voltage (raw): 715<br>Voltage (mV): 2404<br>Voltage (calc.): 2306<br>Error: 4.08 % |
 | Full light | Voltage (raw): 1023<br>Voltage (mV): 3157<br>Voltage (calc.): 3300<br>Error: 4.53 % |
-
+  
 #### ADC_11db attenuation and 12 bits resolution
 
 | Level | Output |
@@ -101,7 +101,7 @@ For each experiment, the `adcAttenuation`, `adcResolution`, `maxADC` and `vRef` 
 | Medium light | Voltage (raw): 2105<br>Voltage (mV): 1779<br>Voltage (calc.): 1696<br>Error: 4.67 % |
 | Bright light | Voltage (raw): 3095<br>Voltage (mV): 2581<br>Voltage (calc.): 2494<br>Error: 3.37 % |
 | Full light | Voltage (raw): 3449<br>Voltage (mV): 2823<br>Voltage (calc.): 2779<br>Error: 1.56 % |
-
+  
 ## Results
 
 The cleanest and highest-quality results were obtained by using the maximum available ADC resolution.  
