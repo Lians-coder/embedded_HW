@@ -54,7 +54,7 @@ The series of 50 presses each were performed with variable press speeds and cont
 
 ## With RC filter
 
-[//] The circuit with current realization of *RC low-pass filter* somehow works worse, then without it.  
+> The circuit with current realization of *RC low-pass filter* somehow works worse, then without it.  
 
 | Part | Method | Number of false positives | Delay | Difficulty |
 | -- | -- | -- | -- | -- |
