@@ -130,7 +130,7 @@ void loop()
       break;
 
     case St::ERROR_BELOW:
-      if (lessThanMinV < v)
+      if (lessThanMinV > v)
       {
         lessThanMinV = v;
       }
