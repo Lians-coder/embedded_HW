@@ -55,7 +55,7 @@ void loop()
       if (btn.pressed())
       {
         enterState(St::NEED_MIN);
-      }    
+      }
       needCalib.blinker(now);
       break;
 
@@ -87,10 +87,10 @@ void loop()
         enterRegular();
         enterState(St::REGULAR);
       }
-      if (btn.latched())
+      if (btn.held())
       {
         enterState(St::FORCE_CALIB);
-      } 
+      }
       break;
 
     case St::REGULAR:
@@ -108,7 +108,7 @@ void loop()
         higherThanMaxV = v;
         enterState(St::ERROR_ABOVE); 
       }
-      if (btn.latched())
+      if (btn.held())
       {
         enterState(St::FORCE_CALIB);
       }     
@@ -120,12 +120,12 @@ void loop()
       {
         higherThanMaxV = v;
       }
-      if (btn.latched())
+      if (btn.held())
       {
         maxVoltage = higherThanMaxV;
         higherThanMaxV = 0;
         enterState(St::RESET_COMPLETED);
-      }     
+      }
       errAbove.blinker(now);
       break;
 
@@ -134,17 +134,17 @@ void loop()
       {
         lessThanMinV = v;
       }
-      if (btn.latched())
+      if (btn.held())
       {
         minVoltage = lessThanMinV;
         lessThanMinV = 0;
         enterState(St::RESET_COMPLETED);
-      }     
+      }
       errBelow.blinker(now);
       break;
 
     case St::ERROR_UNKNOWN:
-      if (btn.latched())
+      if (btn.held())
       {
         enterState(St::FORCE_CALIB);
       }    
@@ -156,7 +156,7 @@ void loop()
       {
         enterState(St::FORCE_CALIB);
       }
-      if (resetCompleted.blinker(now))
+      else if (resetCompleted.blinker(now))
       {
         enterState(St::SUCCESS_CALIB);
       }

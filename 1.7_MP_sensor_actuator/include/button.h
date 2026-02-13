@@ -1,6 +1,6 @@
 constexpr uint8_t BTN_PIN = 6;
 constexpr uint32_t DEBOUNCE_T = 50;
-constexpr uint32_t LATCHED_T = 500;
+constexpr uint32_t HOLD_T = 2000;
 
 class Btn
 {
@@ -10,14 +10,14 @@ class Btn
     uint32_t dbStart = 0;
     uint32_t holdStart = 0;
     bool wasPressed = false;
-    bool latchedFlag = false;
+    bool holdFlag = false;
     
     enum class BtnSt
     {
       IDLE,
       DEBOUNCING,
       PRESSED,
-      LATCHED
+      HOLD
     };
 
     BtnSt state = BtnSt::IDLE;
@@ -74,17 +74,17 @@ class Btn
           {
             state = BtnSt::IDLE;
           }
-          else if (now - holdStart >= LATCHED_T)
+          else if (now - holdStart >= HOLD_T)
           {
-            latchedFlag = true;
-            state = BtnSt::LATCHED;
+            holdFlag = true;
+            state = BtnSt::HOLD;
           }
           break;
 
-        case BtnSt::LATCHED:
+        case BtnSt::HOLD:
           if (!isDown) 
           { 
-            latchedFlag = false;
+            holdFlag = false;
             state = BtnSt::IDLE;
           }
           break;
@@ -101,11 +101,11 @@ class Btn
       return false;
     }
 
-    bool latched()
+    bool held()
     {
-      if (latchedFlag) 
+      if (holdFlag) 
       {
-        latchedFlag = false;
+        holdFlag = false;
         return true;
       }
       return false;

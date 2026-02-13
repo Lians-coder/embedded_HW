@@ -3,13 +3,11 @@ constexpr uint8_t PIXEL_COUNT = 1;
 constexpr uint8_t PIXEL_PIN = 48;
 
 constexpr uint16_t SLOW_BLINK_T = 500;
-constexpr uint16_t MEDIUM_BLINK_T = 150;
 constexpr uint16_t FAST_BLINK_T = 50;
 constexpr uint8_t changeStateBlinkTimes = 5;
 
 Adafruit_NeoPixel pixel(PIXEL_COUNT, PIXEL_PIN, NEO_GRB + NEO_KHZ800);
 uint32_t WHITE   = pixel.Color(255, 255, 255);
-uint32_t YELLOW  = pixel.Color(255, 255, 0);
 uint32_t RED     = pixel.Color(255, 0, 0);
 uint32_t GREEN   = pixel.Color(0, 255, 0);
 uint32_t BLUE    = pixel.Color(0, 0, 255);
