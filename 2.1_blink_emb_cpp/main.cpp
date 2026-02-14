@@ -19,6 +19,7 @@ enum ModesLed
 
 uint8_t currentMode = STATE_ALTERNATE;
 
+// todo make in separate files
 class Led
 {
   public:
@@ -116,7 +117,8 @@ void setup()
   led.set(currentMode, now);
 
   btn.init();
-
+  now = millis();
+  loopTimeStart = now;
 }
 
 void loop()
@@ -124,8 +126,10 @@ void loop()
   uint32_t now = millis();
 
   // loop counting
-  if (loopCounter == 0) loopTimeStart = now;
+ // if (loopCounter == 0) loopTimeStart = now;
+
   loopCounter++;
+
   if (loopCounter % loopBundleTimes == 0)
   {
     loopTimeEnd = now;
