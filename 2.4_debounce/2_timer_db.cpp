@@ -12,7 +12,7 @@ class Btn
     volatile bool pressed = false;
     volatile uint32_t lastPressed = 0;
 
-    static void isr(void* arg) 
+    static IRAM_ATTR void isr(void* arg) 
     {
       Btn* self = static_cast<Btn*>(arg);
       self->pressed = true;
@@ -21,7 +21,7 @@ class Btn
     void init()
     {
       pinMode(pin, INPUT);
-      attachInterruptArg(pin, isr, this, FALLING);
+      attachInterruptArg(digitalPinToInterrupt(pin), isr, this, FALLING);
     }
 
     bool handler(uint32_t now)
