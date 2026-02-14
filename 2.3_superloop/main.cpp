@@ -4,19 +4,19 @@ constexpr uint8_t PIN_0 = 15;
 constexpr uint8_t PIN_1 = 16;
 constexpr uint8_t PIN_2 = 17;
 
-constexpr uint16_t T_0 = 200;
-constexpr uint16_t T_1 = 500;
-constexpr uint16_t T_2 = 1000;
+constexpr uint32_t T_0 = 200;
+constexpr uint32_t T_1 = 500;
+constexpr uint32_t T_2 = 1000;
 
 uint32_t now = 0;
 
 struct Led {
-  uint8_t pin;
-  uint16_t blinkTime;
-  uint8_t state;
+  uint32_t blinkTime;
   uint32_t lastToggle;
+  uint8_t pin;
+  uint8_t state;
 
-  Led (uint8_t p, uint16_t t)
+  Led (uint8_t p, uint32_t t)
   : pin(p), blinkTime(t), state(LOW), lastToggle(0) {}
 };
 
