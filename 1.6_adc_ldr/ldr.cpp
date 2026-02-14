@@ -11,15 +11,16 @@ constexpr uint16_t maxADC = 1023;
 void setup()
 {
   Serial.begin(115200);
+  Serial.println();
+  Serial.println("Starting");
 }
 
-void loop()
+void readVoltageHandler(uint32_t now)
 {
-  uint32_t now = millis();
   if (now - lastRead >= readPeriod)
   {
     lastRead = now;
-    uint32_t voltageRaw = analogRead(PIN);
+    uint16_t voltageRaw = analogRead(PIN);
     uint32_t voltageCalc = voltageRaw * vRef / maxADC;
     uint32_t voltageMV = analogReadMilliVolts(PIN);
     float measurementError = fabs((float)voltageMV - (float)voltageCalc) * 100.0f / (float)voltageMV;
@@ -29,4 +30,10 @@ void loop()
       voltageRaw, voltageMV, voltageCalc, measurementError
     );
   }
+}
+
+void loop()
+{
+  uint32_t now = millis();
+  readVoltageHandler(now);
 }
