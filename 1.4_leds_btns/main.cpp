@@ -8,25 +8,27 @@ constexpr uint8_t LED_BLUE_PIN = 16;
 
 // time
 constexpr uint32_t DB_DELAY    = 50;
-constexpr uint16_t FAST_T      = 500;
-constexpr uint16_t SLOW_T      = 2000;
+constexpr uint32_t FAST_T      = 500;
+constexpr uint32_t SLOW_T      = 2000;
 
 // 1 - fast, 0 - slow
 bool MODE = 0;
 
 uint32_t now = 0;
 
+
+// typedef struct Btn
 struct Btn {
+  uint32_t lastDBtime;
+  uint8_t state;       // DB state
+  uint8_t lastState;   // raw state
   uint8_t pin;
   bool mode;           // 1 - fast, 0 - slow
   bool activeLow;      // bootBtn is LOW when pressed, extBnt is HIGH when pressed
-  uint8_t state;       // DB state
-  uint8_t lastState;   // raw state
-  uint32_t lastDBtime;
-
+  
   Btn (uint8_t p, bool m)
   : pin(p), mode(m), activeLow(!m), state(LOW), lastState(LOW), lastDBtime(0) {}
-};
+};//__attribute__((packed)); 
 
 Btn bootBtn {BOOT_PIN, 0};
 Btn extBtn {EXT_PIN, 1};
@@ -35,15 +37,27 @@ Btn extBtn {EXT_PIN, 1};
 void blink(uint16_t);
 void btnHandler(Btn&);
 
-void setup() 
+
+void setupInputPins()
 {
   pinMode(bootBtn.pin, INPUT_PULLUP);  // LOW - pressed
   pinMode(extBtn.pin, INPUT);          // HIGH - pressed
 
+  // sizeof(bootBtn);
+}
+
+void setupOutputPins()
+{
   pinMode(LED_RED_PIN, OUTPUT);
   pinMode(LED_BLUE_PIN, OUTPUT);
   digitalWrite(LED_RED_PIN, LOW);
   digitalWrite(LED_BLUE_PIN, LOW);
+} 
+
+void setup() 
+{
+  setupInputPins();
+  setupOutputPins();
 }
 
 void loop() 
@@ -56,14 +70,14 @@ void loop()
   blink(MODE ? FAST_T : SLOW_T);
 }
 
-void blink(uint16_t t)
+void blink(uint32_t time_delay)
 {
   digitalWrite(LED_RED_PIN, LOW);
   digitalWrite(LED_BLUE_PIN, HIGH);
-  delay(t);
+  delay(time_delay);
   digitalWrite(LED_RED_PIN, HIGH);
   digitalWrite(LED_BLUE_PIN, LOW);
-  delay(t); 
+  delay(time_delay); 
 }
 
 
