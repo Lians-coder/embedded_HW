@@ -40,6 +40,7 @@ void setup()
 void loop()
 {
   uint32_t now = millis();
+  //todo  in diff functions
   if (now - lastToggle >= PERIOD)
   {
     lastToggle = now;

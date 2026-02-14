@@ -20,6 +20,7 @@ void setup()
 void loop()
 {
   uint32_t now = millis();
+ //todo in function
   if (now - lastRead >= readPeriod)
   {
     lastRead = now;

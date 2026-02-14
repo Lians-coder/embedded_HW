@@ -189,7 +189,11 @@ void changeColorOnBrightness(uint32_t now)
   lastDifferentV = v;
 
   static uint32_t lastUpdate = 0;
-  if (now - lastUpdate < PIXEL_UPDATE_T ) return;
+  if (now - lastUpdate < PIXEL_UPDATE_T )
+  {
+    return;
+  }
+  
   lastUpdate = now;
 
   uint32_t clamped = constrain(v, minVoltage, maxVoltage);

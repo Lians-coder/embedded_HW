@@ -24,7 +24,11 @@ class Btn
 
     bool handler()
     {
-      if (!pressed) return false;
+      if (!pressed)
+      {
+         return false;
+      }
+      
       if (pressed && digitalRead(pin) == LOW) 
       {
         pressed = false;

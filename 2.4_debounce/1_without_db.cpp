@@ -9,7 +9,7 @@ class Btn
   public:
     uint8_t pin;
     explicit Btn(uint8_t p) : pin(p) {}
-    static void isr(void* arg) { counter++; };
+    static IRAM_ATTR void isr(void* arg) { counter++; };
 
     void init()
     {
