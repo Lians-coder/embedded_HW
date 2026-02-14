@@ -5,10 +5,10 @@ constexpr uint32_t HOLD_T = 2000;
 class Btn
 {
   private:
-    const uint8_t pin;
-    volatile bool pressItr = false;
     uint32_t dbStart = 0;
     uint32_t holdStart = 0;
+    const uint8_t pin;
+    volatile bool pressItr = false;
     bool wasPressed = false;
     bool holdFlag = false;
     
@@ -33,7 +33,7 @@ class Btn
     void init()
     {
       pinMode(pin, INPUT);
-      attachInterruptArg(pin, isr, this, FALLING);
+      attachInterruptArg(digitalPinToInterrupt(pin), isr, this, FALLING);
     }
     
     void update(uint32_t now)
