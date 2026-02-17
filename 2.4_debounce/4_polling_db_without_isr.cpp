@@ -7,11 +7,13 @@ uint16_t counter = 0;
 
 enum class BtnSt
 {
+  NONE, // todo rename
   PRESSED,
-  RELEASED
+  RELEASED,
+  ERROR
 };
 
-BtnSt currentState = BtnSt::RELEASED;
+BtnSt currentState = BtnSt::NONE;
 uint8_t STABLE = 0;
 static constexpr uint8_t STABLE_TIMES = 10; // 50 ms debounce
 

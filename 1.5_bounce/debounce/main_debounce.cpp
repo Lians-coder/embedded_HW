@@ -4,16 +4,18 @@ constexpr uint8_t debounceT = 50;
 constexpr size_t btnCount   = 2;
 constexpr uint8_t PIN_LEFT  = 4;
 constexpr uint8_t PIN_RIGHT = 5;
+constexpr uint32_t BAUD_RATE = 115200;
+
 
 struct Btn {
-  uint8_t pin;
-  const char* name;
   uint32_t counter;
   uint32_t lastPressed;
+  uint8_t pin;
+  const char* name;
   volatile bool pressed;
 
-  Btn (uint8_t p, const char* n)
-  : pin(p), name(n), counter(0), lastPressed(0), pressed(false) {}
+  Btn (uint8_t newPin, const char* newName)
+  : pin(newPin), name(newName), counter(0), lastPressed(0), pressed(false) {}
 };
 
 Btn btns[btnCount] = {
@@ -26,20 +28,34 @@ void IRAM_ATTR reactionRight() { btns[1].pressed = true; }
 
 void setup()
 {
-  Serial.begin(115200);
+  // todo  write in different functions
+  //1
+  Serial.begin(BAUD_RATE);
+  Serial.println();
 
+  //2
   for (int i = 0; i < btnCount; i++)
   {
     pinMode(btns[i].pin, INPUT);
   }
 
+  //3
   attachInterrupt(digitalPinToInterrupt(btns[0].pin), reactionLeft, RISING);
   attachInterrupt(digitalPinToInterrupt(btns[1].pin), reactionRight, RISING);
 }
 
-void loop()
+
+void handleButtons()
 {
-  uint32_t now = millis();
+  // uint32_t now = millis();
+
+  // if (btn.pressed && (now - btn.lastPressed > debounceT)) {
+  //   btn.counter++;
+  //   btn.lastPressed = now;
+  //   Serial.printf("\n%s button pressed! Count: %lu\n", btn.name, btn.counter);
+  // }
+
+  // btn.pressed = false;
 
   for (int i = 0; i < btnCount; i++)
   {
@@ -55,7 +71,14 @@ void loop()
     }
     
   }
-  
-  Serial.println("Hello!");
-  delay(250);
+
+}
+
+void loop()
+{
+  uint32_t now = millis();
+  handleButtons();
+
+  // Serial.println("Hello!");
+  // delay(250);
 }
