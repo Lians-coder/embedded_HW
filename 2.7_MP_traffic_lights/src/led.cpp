@@ -10,7 +10,7 @@ void Led::init()
 }
 
 
-bool Led::stable(uint32_t now, uint32_t period)
+bool Led::stable(uint32_t now, uint32_t totalPeriod)
 {
   if (!lastToggle)
   {
@@ -20,7 +20,7 @@ bool Led::stable(uint32_t now, uint32_t period)
 
   digitalWrite(pin, HIGH);
 
-  if (now - lastToggle > period)
+  if (now - lastToggle > totalPeriod)
   {
     return true;
   }
@@ -28,13 +28,13 @@ bool Led::stable(uint32_t now, uint32_t period)
 }
 
 
-bool Led::blink(uint32_t now, uint32_t totalPeriod, uint32_t blinkPeriod, bool infinity)
+bool Led::blink(uint32_t now, uint32_t totalPeriod, uint32_t blinkPeriod)
 {
   if (!lastToggle)
   {
     lastToggle = now;
   }
-  if (!infinity && (now - lastToggle > totalPeriod))
+  if (now - lastToggle > totalPeriod)
   {
     reset();
     return true;
@@ -54,6 +54,23 @@ bool Led::blink(uint32_t now, uint32_t totalPeriod, uint32_t blinkPeriod, bool i
   }
 
   return false;
+}
+
+
+void Led::blinkSpecial(uint32_t now, uint32_t blinkPeriod)
+{
+  if (!lastBlink)
+  {
+    lastBlink = now;
+    isOn = true;
+    digitalWrite(pin, HIGH);
+  }
+  if (now - lastBlink > blinkPeriod)
+  {
+    lastBlink = now;
+    isOn = !isOn;
+    digitalWrite(pin, isOn ? HIGH : LOW);
+  }
 }
 
 

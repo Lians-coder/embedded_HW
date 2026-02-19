@@ -33,7 +33,7 @@ void Traffic::update(uint32_t now)
     regular = !regular;
   }
 
-  if (!regular && state != St::ERROR)
+  if (!regular && state != St::SPECIAL && state != St::ERROR)
   {
     enterState(St::SPECIAL);
   }
@@ -79,7 +79,7 @@ void Traffic::update(uint32_t now)
       case St::SPECIAL:
         if (!regular)
         {
-          yellow.blink(now, SPECIAL_P, true);
+          yellow.blinkSpecial(now, BLINK_T);
         }
         else
         {
@@ -88,9 +88,9 @@ void Traffic::update(uint32_t now)
         break;
 
       case St::ERROR:
-        red.blink(now, SPECIAL_P, ERROR_T, true);
-        yellow.blink(now, SPECIAL_P, ERROR_T, true);
-        green.blink(now, SPECIAL_P, ERROR_T, true);
+        red.blinkSpecial(now, ERROR_T);
+        yellow.blinkSpecial(now, ERROR_T);
+        green.blinkSpecial(now, ERROR_T);
         break;
     }
 }

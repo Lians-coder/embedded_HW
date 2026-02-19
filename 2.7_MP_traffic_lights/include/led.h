@@ -23,8 +23,9 @@ class Led
     explicit Led(pin_t p);
     void init();
     void reset();
-    bool stable(uint32_t now, uint32_t period);
-    bool blink(uint32_t now, uint32_t totalPeriod, uint32_t blinkPeriod = BLINK_T, bool infinity = false);
+    bool stable(uint32_t now, uint32_t totalPeriod);
+    bool blink(uint32_t now, uint32_t totalPeriod, uint32_t blinkPeriod = BLINK_T);
+    void blinkSpecial(uint32_t now, uint32_t blinkPeriod);
 };
 
 #endif  // LED_H
