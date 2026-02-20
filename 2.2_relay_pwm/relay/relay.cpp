@@ -1,6 +1,6 @@
 #include <Arduino.h>
 
-constexpr uint8_t PIN_IN = 5;
+constexpr uint8_t PIN_RELAY = 5;
 constexpr uint8_t PIN_NO = 4;
 
 constexpr uint8_t TIMES_TO_MEASURE = 10;
@@ -31,8 +31,8 @@ void IRAM_ATTR isr()
 void setup()
 {
   Serial.begin(115200);  
-  pinMode(PIN_IN, OUTPUT);
-  digitalWrite(PIN_IN, relayState);
+  pinMode(PIN_RELAY, OUTPUT);
+  digitalWrite(PIN_RELAY, relayState);
   pinMode(PIN_NO, INPUT_PULLUP);
   attachInterrupt(digitalPinToInterrupt(PIN_NO), isr, FALLING);
 }
@@ -49,7 +49,7 @@ void loop()
       pinNOwasClosed = false;
       startT = micros();
     }
-    digitalWrite(PIN_IN, relayState);
+    digitalWrite(PIN_RELAY, relayState);
   }
 
   if (pinNOwasClosed && relayState == LOW)

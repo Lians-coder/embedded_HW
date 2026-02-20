@@ -4,11 +4,11 @@
 
 ### Schematic
 
-[KiCad](https://github.com/Lians-coder/embedded_HW/blob/main/2.2_relay_pwm/relay.kicad_sch) schematic  
+[KiCad](https://github.com/Lians-coder/embedded_HW/blob/main/2.2_relay_pwm/relay/relay.kicad_sch) schematic  
 
 ### Code
 
-[relay.cpp](https://github.com/Lians-coder/embedded_HW/blob/main/2.2_relay_pwm/relay.cpp)  
+[relay.cpp](https://github.com/Lians-coder/embedded_HW/blob/main/2.2_relay_pwm/relay/relay.cpp)  
 
 ### Result
 
@@ -16,6 +16,15 @@
 
 ## PWM (optional)
 
-### Programming PWM
+### Schematic for PWM
 
-[pwm.cpp](https://github.com/Lians-coder/embedded_HW/blob/main/2.2_relay_pwm/relay.cpp)  
+[KiCad](https://github.com/Lians-coder/embedded_HW/blob/main/2.2_relay_pwm/pwm/pwm.kicad_sch) schematic  
+
+### Code for PWM
+
+[main.cpp](https://github.com/Lians-coder/embedded_HW/blob/main/2.2_relay_pwm/pwm/src/main.cpp)  
+
+### Result for PWM
+
+[Video](https://drive.google.com/file/d/1wRmn9RX34APbc-dWMelQGd08lkUrOAAK/view?usp=sharing)  
+Logic analyzer [output](https://github.com/Lians-coder/embedded_HW/blob/main/2.2_relay_pwm/pwm/software_pwm.sal)  
