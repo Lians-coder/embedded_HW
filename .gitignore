@@ -6,6 +6,8 @@
 *.lo
 *.o
 *.obj
+*.ko
+*.elf
 
 # Precompiled Headers
 *.gch
@@ -13,12 +15,18 @@
 
 # Linker files
 *.ilk
+*.map
+*.exp
 
 # Debugger Files
 *.pdb
+*.dSYM/
+*.su
+*.idb
 
 # Compiled Dynamic libraries
 *.so
+*.so.*
 *.dylib
 *.dll
 
@@ -29,6 +37,7 @@
 # Compiled Static libraries
 *.lai
 *.la
+*.lo
 *.a
 *.lib
 
@@ -36,6 +45,22 @@
 *.exe
 *.out
 *.app
+*.i*86
+*.x86_64
+*.hex
+*.bin
 
 # debug information files
 *.dwo
+
+#settings
+.settings/
+
+#metadata
+.metadata/
+
+#Debug
+Debug/
+debug/
+Release/
+release
