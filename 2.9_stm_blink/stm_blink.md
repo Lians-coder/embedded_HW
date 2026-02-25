@@ -31,8 +31,8 @@ int main(void)
 
 ### App
 
-[app.h](https://github.com/Lians-coder/embedded_HW/blob/main/2.9_stm_blink/stm_blink/include/app.h)  
-[app.c](https://github.com/Lians-coder/embedded_HW/blob/main/2.9_stm_blink/stm_blink/src/app.c)  
+[app.h](https://github.com/Lians-coder/embedded_HW/blob/main/2.9_stm_blink/include/app.h)  
+[app.c](https://github.com/Lians-coder/embedded_HW/blob/main/2.9_stm_blink/src/app.c)  
 
 ## Result
 
