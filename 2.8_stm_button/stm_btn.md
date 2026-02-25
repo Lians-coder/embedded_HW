@@ -4,6 +4,12 @@
 
 [KiCad schematic](https://github.com/Lians-coder/embedded_HW/blob/main/2.8_stm_button/stm_btn_led.kicad_sch) for this project.  
 
+## Project configuration
+
+1. Platformio [config](https://github.com/Lians-coder/embedded_HW/blob/main/2.8_stm_button/platformio.ini).  
+
+2. **CubeMX** [file](https://github.com/Lians-coder/embedded_HW/blob/main/2.8_stm_button/stm_led_btn.ioc).  
+
 ## Code
 
 User code in **main.c**:  
