@@ -10,8 +10,8 @@ const int8_t Encoder::table[16] =
 };
 
 
-Encoder::Encoder(uint8_t pA, uint8_t pB, uint8_t pSw, bool rotRev)
-: pinA (pA), pinB(pB), btn(pSw), rotationReverse(rotRev) {}  
+Encoder::Encoder(uint8_t pA, uint8_t pB, uint8_t pSw)
+: pinA (pA), pinB(pB), btn(pSw) {} 
 
 
 void Encoder::init()
@@ -27,6 +27,7 @@ void Encoder::init()
   btn.init();
 }
 
+
 void Encoder::btnUpdate(uint32_t now)
 {
  btn.update(now);
@@ -36,28 +37,6 @@ void Encoder::btnUpdate(uint32_t now)
 bool Encoder::btnPressed()
 {
   return btn.pressed();
-}
-
-
-bool Encoder::rotationCw()
-{
-  if (flagCw)
-  {
-    flagCw = false;
-    return true;
-  }
-  return false;
-}
-
-
-bool Encoder::rotationCcw()
-{
-  if (flagCcw)
-  {
-    flagCcw = false;
-    return true;
-  }
-  return false;
 }
 
 
@@ -84,46 +63,20 @@ void IRAM_ATTR Encoder::isrB(void* arg)
 
 void IRAM_ATTR Encoder::handleIsrDirection()
 {
-  uint32_t nowUS = micros();
-  if (nowUS - lastTick < debounceT)
-  {
-    return;
-  }
-
   uint8_t state = readState();
   int8_t delta = table[(lastState << 2 | state)];
   lastState = state;
 
-  // if(delta > 0) flagCw = true;
-  // else if(delta < 0) flagCcw = true;
+  acc += delta;
 
-  Direction dir = Direction::NONE;
-  // if (!rotationReverse)
-  // {
-    dir = (delta > 0) ? Direction::CW : (delta < 0 ? Direction::CCW : Direction::NONE);
-  // }
-  // else
-  // {
-  //   dir = (delta < 0) ? Direction::CW : (delta > 0 ? Direction::CCW : Direction::NONE);
-  // }
-
-  if (dir == lastAcceptedDir || dir == Direction::NONE)
-  {
-    return;
+  if (acc >= 4) {
+    steps++;
+    acc = 0;
   }
-
-  if (dir == Direction::CW) 
-  {
-    flagCw = true;
+  else if (acc <= -4) {
+    steps--;
+    acc = 0;
   }
-  else if (dir == Direction::CCW) 
-  {
-    flagCcw = true;
-  }
-
-  lastAcceptedDir = dir;
-  lastTick = nowUS;
 
   GPIO.status_w1tc = (1 << pinA) | (1 << pinB);
 }
-

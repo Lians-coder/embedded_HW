@@ -4,22 +4,20 @@
 #include <Arduino.h>
 #include "button.h"
 
-constexpr uint8_t PIN_ENC_A  = 4;
-constexpr uint8_t PIN_ENC_B  = 5;
+constexpr uint8_t PIN_ENC_A  = 5;
+constexpr uint8_t PIN_ENC_B  = 4;
 constexpr uint8_t PIN_ENC_SW = 6;
-constexpr uint32_t ENC_DEBOUNCE_US = 3000;  // 3 ms
+
 
 class Encoder
 {
   public:
-    explicit Encoder(uint8_t pA, uint8_t pB, uint8_t pSw, bool rotRev = false);
+    explicit Encoder(uint8_t pA, uint8_t pB, uint8_t pSw);
     void init();
-    bool rotationCw();  // uint32_t now
-    bool rotationCcw();  // uint32_t now
     bool btnPressed();
     void btnUpdate(uint32_t now);
-    
-    bool rotationReverse{false};
+
+    volatile int8_t steps{0};
 
     enum class Direction
     {
@@ -42,12 +40,7 @@ class Encoder
     Btn btn;
 
     uint8_t lastState;
-    volatile bool flagCw{false};
-    volatile bool flagCcw{false};
-
-    volatile uint32_t lastTick{0};
-    static constexpr uint32_t debounceT = ENC_DEBOUNCE_US;
-    Direction lastAcceptedDir{Direction::NONE};  
+    volatile int8_t acc = 0; 
 };
 
 

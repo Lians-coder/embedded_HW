@@ -7,7 +7,6 @@
 constexpr uint8_t PIN_CODE[] = {7, 9, 0, 3};
 constexpr size_t PIN_SIZE = sizeof(PIN_CODE);
 constexpr uint8_t MAX_TRIALS = 3;
-constexpr uint32_t POLLING_T = 20;
 
 
 class Controller
@@ -23,7 +22,6 @@ class Controller
     void resetAttempt();
     void trialsOver();
 
-    uint32_t lastPoll{0};
     uint8_t digits[PIN_SIZE];
     uint8_t digitIndex{0};
     uint8_t currentDigit{0};

@@ -91,7 +91,6 @@ void Controller::trialsOver()
 }
 
 
-
 void Controller::update(uint32_t now)
 {
   if (trials >= MAX_TRIALS)
@@ -99,13 +98,8 @@ void Controller::update(uint32_t now)
     trialsOver();
   }
 
-  // if (now - lastPoll < POLLING_T)
-  // {
-  //   return;
-  // }
-  // lastPoll = now;
-
   encoder.btnUpdate(now);
+
   if (encoder.btnPressed())
   {
     Serial.printf("\nRESET\n");
@@ -113,30 +107,32 @@ void Controller::update(uint32_t now)
     return;
   }
 
-  if (encoder.rotationCw())
+  while(encoder.steps != 0)
   {
+    if(encoder.steps > 0)
+    {
+      encoder.steps--;
+      // CW logic
       if(digitState == DigitState::CONFIRMED)
       {
         digitState = DigitState::SELECTING;
         currentDigit = 0;
       }
-
       selectDigit();
-      // if (digitState == DigitState::SELECTING)
-      // {
-        
-      // }
       encoder.lastDir = Encoder::Direction::CW;
-  }
-
-  else if (encoder.rotationCcw())
-  {
+    }
+    
+    else if(encoder.steps < 0)
+    {
+      encoder.steps++;
+      // CCW logic
       if(digitState == DigitState::SELECTING && encoder.lastDir == Encoder::Direction::CW)
       {
         confirmDigit();
         digitState = DigitState::CONFIRMED;
       }
       encoder.lastDir = Encoder::Direction::CCW;
+    }
   }
 }
 
