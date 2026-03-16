@@ -3,7 +3,7 @@
 
 #include <HardwareSerial.h>
 #include <driver/uart.h>
-
+#include <hal/uart_ll.h>
 
 constexpr uint8_t PIN_TX = 17;
 constexpr uint8_t PIN_RX = 18;
@@ -26,7 +26,7 @@ class Uart
     void parseByte(uint8_t b);
     static void IRAM_ATTR uartIsr(void* arg);
     bool pushByte(uint8_t b);
-    bool popByte(uint8_t b);
+    bool popByte(uint8_t &b);
     
     HardwareSerial uartNr{UART_NUM_1};
     SerialConfig config{UART_CONFIG};

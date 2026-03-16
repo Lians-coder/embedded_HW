@@ -22,11 +22,17 @@ void IRAM_ATTR Uart::uartIsr(void* arg)
 {
   Uart* self = static_cast<Uart*>(arg);
 
-  while (self->uartNr.available())
+  while (uart_ll_get_rxfifo_len(&UART1))
   {
-    uint8_t b = self->uartNr.read();
+    uint8_t b;
+    uart_ll_read_rxfifo(&UART1, &b, 1);
     self->pushByte(b);
   }
+  uart_clear_intr_status(
+    UART_NUM_1,
+    UART_RXFIFO_FULL_INT_CLR_M |
+    UART_RXFIFO_TOUT_INT_CLR_M
+  );
 }
 
 
@@ -55,7 +61,7 @@ bool Uart::pushByte(uint8_t b)
 }
 
 
-bool Uart::popByte(uint8_t b)
+bool Uart::popByte(uint8_t& b)
 {
   if (tail == head)
   {

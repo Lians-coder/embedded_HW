@@ -1,30 +1,61 @@
 #include "button.h"
 
-uint8_t buttonState = 0;
-uint32_t lastDebounceTime = 0;
-uint8_t lastReading = GPIO_PIN_SET;
 
-
-void btnUpdate()
+ButtonContext btnCtx = 
 {
-  uint8_t currentReading = HAL_GPIO_ReadPin(Button_GPIO_Port, Button_Pin);
+  .state = BTN_IDLE,
+  .lastDebounceTime = 0,
+  .wasPressed = false
+};
 
-  if (currentReading != lastReading)
+
+void btnUpdate(uint32_t now)
+{
+bool isDown = (HAL_GPIO_ReadPin(Button_GPIO_Port, Button_Pin) == GPIO_PIN_RESET);
+
+  switch (btnCtx.state)
   {
-    lastDebounceTime = HAL_GetTick();
-  }
+    case BTN_IDLE:
+    {
+      if (isDown)
+      {
+        btnCtx.lastDebounceTime = now;
+        btnCtx.state = DEBOUNCING;
+      }
+      break;          
+    }
 
-  if ((HAL_GetTick() - lastDebounceTime) > DEBOUNCE_TIME)
+    case DEBOUNCING:
+      if (now - btnCtx.lastDebounceTime >= DEBOUNCE_TIME)
+      {
+        if (isDown)
+        {
+          btnCtx.wasPressed = true;
+          btnCtx.state = PRESSED;
+        }
+        else 
+        {
+          btnCtx.state = BTN_IDLE; 
+        }
+      }
+      break;
+
+    case PRESSED:
+      if (!isDown)
+      {
+        btnCtx.state = BTN_IDLE;
+      }
+      break;
+  }
+}
+
+
+bool btnPressed()
+{
+  if (btnCtx.wasPressed)
   {
-    if (currentReading == GPIO_PIN_RESET && !buttonState)
-    {
-      buttonState = 1;
-    }
-    else if (currentReading == GPIO_PIN_SET)
-    {
-      buttonState = 0;
-    }
+    btnCtx.wasPressed = false;
+    return true;
   }
-
-  lastReading = currentReading;
+  return false;
 }

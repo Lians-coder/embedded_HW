@@ -3,13 +3,13 @@
 #include "led.h"
 
 
-UartContext uartCtx =
+UartContext uartCtx = {0};
+
+
+void uartInit(UART_HandleTypeDef* huart)
 {
-  .head = 0,
-  .tail = 0,
-  .cmdReceived = 0,
-  .state = IDLE
-};
+  HAL_UART_Receive_IT(huart, &uartCtx.rxByte, 1);
+}
 
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
@@ -20,7 +20,6 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
     HAL_UART_Receive_IT(huart, &uartCtx.rxByte, 1);
   }
 }
-
 
 
 void transmit(uint8_t cmd)
@@ -36,8 +35,7 @@ void transmit(uint8_t cmd)
 
 void transmitToggle()
 {
-  Cmd cmd = TOGGLE;
-  transmit(cmd);
+  transmit(TOGGLE);
 }
 
 
@@ -69,20 +67,20 @@ bool popByte(uint8_t* b)
 }
 
 
-void uartProcess()
+void uartProcess(uint32_t now)
 {
   uint8_t b;
   while(popByte(&b))
   {
-    parseByte(b);
+    parseByte(b, now);
   }
 }
 
 
-void parseByte(uint8_t b)
+void parseByte(uint8_t b, uint32_t now)
 {
   static uint32_t lastByteTime = 0;
-  uint32_t now = HAL_GetTick();
+
   if (now - lastByteTime > FRAME_TIMEOUT)
   {
     uartCtx.state = IDLE;
