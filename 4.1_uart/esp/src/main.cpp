@@ -6,6 +6,7 @@
 Uart uart(PIN_RX, PIN_TX);
 Btn btn(PIN_BTN);
 
+
 void setup() 
 {
   uart.init();
@@ -16,11 +17,10 @@ void setup()
 
 void loop() 
 {
-  uint32_t now = millis();
-  btn.update(now);
-
-  uart.receiveAndReact();
+  btn.update(millis());
   
+  uart.process();
+
   if (btn.pressed()) 
   {
     uart.transmitToggle();

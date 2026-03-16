@@ -9,15 +9,62 @@ Uart::Uart(uint8_t rxP, uint8_t txP)
 void Uart::init()
 {
   uartNr.begin(baudRate, config, pinRx, pinTx);
+
+  uart_isr_free(UART_NUM_1);
+  uart_isr_register(UART_NUM_1, uartIsr, this, ESP_INTR_FLAG_IRAM, nullptr);
+
+  uart_set_rx_full_threshold(UART_NUM_1, 1);
+  uart_enable_rx_intr(UART_NUM_1);
 }
 
 
-void Uart::receiveAndReact()
+void IRAM_ATTR Uart::uartIsr(void* arg)
 {
-  if (uartNr.available())
+  Uart* self = static_cast<Uart*>(arg);
+
+  while (self->uartNr.available())
   {
-    parseByte(uartNr.read());
+    uint8_t b = self->uartNr.read();
+    self->pushByte(b);
   }
+}
+
+
+void Uart::process()
+{
+  uint8_t b;
+  while(popByte(b))
+  {
+    parseByte(b);
+  }
+}
+
+
+bool Uart::pushByte(uint8_t b)
+{
+  size_t next = (head + 1) % RX_BUF_SIZE;
+
+  if (next == tail)
+  {
+    return false;
+  }
+
+  rxBuffer[head] = b;
+  head = next;
+  return true;
+}
+
+
+bool Uart::popByte(uint8_t b)
+{
+  if (tail == head)
+  {
+    return false;
+  }
+
+  b = rxBuffer[tail];
+  tail = (tail + 1) % RX_BUF_SIZE;
+  return true;
 }
 
 
@@ -40,6 +87,7 @@ void Uart::parseByte(uint8_t b)
       break;
 
     case State::RECEIVE:
+    {
       if (b == (cmdReceived ^ startByte))
       {
         if (cmdReceived == cmdToggle)
@@ -49,18 +97,19 @@ void Uart::parseByte(uint8_t b)
       }
       state = State::IDLE;
       break;
+    }
   }
 }
 
 
 void Uart::transmit(uint8_t cmd)
 {
-  uint8_t frame[3];
+  uint8_t frame[FRAME_SIZE];
   frame[0] = startByte;
   frame[1] = cmd;
-  frame[3] = cmd ^ startByte;
+  frame[2] = cmd ^ startByte;
 
-  uartNr.write(frame, 3);
+  uartNr.write(frame, FRAME_SIZE);
 }
 
 

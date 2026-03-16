@@ -2,14 +2,21 @@
 #define UART_H
 
 #include <HardwareSerial.h>
+#include <driver/uart.h>
 
-constexpr uint8_t UART_NR = 1;
+
 constexpr uint8_t PIN_TX = 17;
 constexpr uint8_t PIN_RX = 18;
 constexpr uint16_t BAUD_RATE = 9600;
 constexpr SerialConfig UART_CONFIG = SERIAL_8N1;
 constexpr uint8_t START_BYTE = 0xAA;
-constexpr uint8_t CMD_TOGGLE = 'T';
+constexpr size_t FRAME_SIZE = 3;
+constexpr size_t RX_BUF_SIZE = 64;
+
+enum class Cmd : uint8_t
+{
+  Toggle = 'T'
+};
 
 
 class Uart
@@ -17,15 +24,23 @@ class Uart
   private:
     void transmit(uint8_t cmd);
     void parseByte(uint8_t b);
-
-    HardwareSerial uartNr{UART_NR};
+    static void IRAM_ATTR uartIsr(void* arg);
+    bool pushByte(uint8_t b);
+    bool popByte(uint8_t b);
+    
+    HardwareSerial uartNr{UART_NUM_1};
     SerialConfig config{UART_CONFIG};
+
+    uint8_t rxBuffer[RX_BUF_SIZE];
+    volatile size_t head{0};
+    volatile size_t tail{0};
+
     uint16_t baudRate{BAUD_RATE};
     const uint8_t startByte{START_BYTE};
-    const uint8_t cmdToggle{CMD_TOGGLE};    
+    const uint8_t cmdToggle{static_cast<uint8_t>(Cmd::Toggle)};    
     const uint8_t pinRx;
     const uint8_t pinTx;
-    uint8_t cmdReceived;
+    uint8_t cmdReceived{0};
 
     enum class State
     {
@@ -38,7 +53,7 @@ class Uart
   public:
     explicit Uart(uint8_t rxP, uint8_t txP);
     void init();
-    void receiveAndReact();
+    void process();
     void transmitToggle();
 };
 
