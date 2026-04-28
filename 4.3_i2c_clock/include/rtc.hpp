@@ -7,7 +7,6 @@
 
 constexpr uint8_t ADDR_RTC  = 0x68;
 
-// Sun 12-04-2026 00:00:00
 constexpr tm DATETIME_TO_SET = {
   .tm_sec = 30,
   .tm_min = 59,
